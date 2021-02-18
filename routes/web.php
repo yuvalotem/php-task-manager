@@ -13,15 +13,11 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
-Route::get('/greeting', function () {
-    return 'Hello World';
-});
-Route::redirect('/users', '/');
-Route::view('/welcome', 'welcome');
-Route::view('/home', 'home');
-Route::get('/user/{name?}', function ($name = 'John') {
-    return $name;
-});
+Route::redirect('/', '/login');
+
+Auth::routes();
+
+Route::get('/p/create', [App\Http\Controllers\TasksController::class, 'create']);
+Route::post('/p', [App\Http\Controllers\TasksController::class, 'store']);
+
+Route::get('/home/{user}', [App\Http\Controllers\HomeController::class, 'index'])->name('home.show');

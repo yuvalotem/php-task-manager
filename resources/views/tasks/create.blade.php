@@ -3,7 +3,7 @@
 @section('content')
 <div class="container">
 <h1 class="col-md-8 text-md-right">Add new task</h1>
-    <form action="/p" enctype="multipart/form-data" method="post">
+    <form action="/p/task" enctype="multipart/form-data" method="post">
     @csrf
                     <div class="form-group row">
                             <label for="task" class="col-md-4 col-form-label text-md-right">

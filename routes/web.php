@@ -14,12 +14,13 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::redirect('/', '/login');
+// Route::redirect('/home', '/home/{{auth()->user()->id}}');
 
 Auth::routes();
 
 Route::get('/p/{task}/edit', [App\Http\Controllers\TasksController::class, 'edit'])->name('task.edit');
-Route::get('/p/create', [App\Http\Controllers\TasksController::class, 'create']);
-Route::post('/p', [App\Http\Controllers\TasksController::class, 'store']);
-Route::put('/p/{task}', [App\Http\Controllers\TasksController::class, 'update']);
+Route::get('/p/create', [App\Http\Controllers\TasksController::class, 'create'])->name('task.create');
+Route::post('/p', [App\Http\Controllers\TasksController::class, 'store'])->name('task.store');
+Route::put('/p/{task}', [App\Http\Controllers\TasksController::class, 'update'])->name('task.update');
 
 Route::get('/home/{user}', [App\Http\Controllers\HomeController::class, 'index'])->name('home.show');

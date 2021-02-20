@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 use App\Models\Task as Task;
+use App\Models\User as User;
 
 use Illuminate\Http\Request;
 
@@ -25,21 +26,26 @@ class TasksController extends Controller
         ]);
         $data['status'] = false;
 
-        auth()->user()->task()->create($data);
+        auth()->user()->tasks()->create($data);
 
         return redirect('/home/'. auth()->user()->id);
     }
 
     public function edit(Task $task)
     {
-        // return dd($task);
         return view('tasks.edit', compact('task'));
     }
-    public function update($task)
+    public function update($id)
     {
-        dd($task);
-        // $task = Task::where('id', $id);
-        // $task->update(array('status' => !$task));
-        // return redirect('/home/'. auth()->user()->id);
+        $data = request()->validate([
+            "task" => "",
+            "deadline" => "",
+            "status" => ""
+        ]);
+        $data['status'] = $data['status'] == "1";
+
+        auth()->user()->tasks()->where('id', $id)->update($data);
+
+        return redirect('/home/'. auth()->user()->id);
     }
 }

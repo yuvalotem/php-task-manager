@@ -32,8 +32,10 @@
                     </div>
 
                     @foreach($user->tasks as $task)
-                    <div id="{{$task->id}}" class='d-flex'>
-                        <input type="checkbox" />
+                    <div class='d-flex'>
+                        @if (!$task->status)
+                            <input id="{{$task->id}}" type="checkbox" />
+                        @endif
                         <div class='col-4 pb-3' onclick="window.location='{{ route('task.edit', $task->id)}}'">
                             {{$task->task}}
                         </div>

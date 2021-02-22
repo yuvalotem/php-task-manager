@@ -20,7 +20,12 @@ Auth::routes();
 
 Route::get('/p/{task}/edit', [App\Http\Controllers\TasksController::class, 'edit'])->name('task.edit');
 Route::get('/p/create', [App\Http\Controllers\TasksController::class, 'create'])->name('task.create');
+
 Route::post('/p', [App\Http\Controllers\TasksController::class, 'store'])->name('task.store');
+
 Route::put('/p/{task}', [App\Http\Controllers\TasksController::class, 'update'])->name('task.update');
+Route::put('/p/{id}', [App\Http\Controllers\TasksController::class, 'check'])->name('task.check');
+
+Route::delete('/p/{task}', [App\Http\Controllers\TasksController::class, 'delete'])->name('task.delete');
 
 Route::get('/home/{user}', [App\Http\Controllers\HomeController::class, 'index'])->name('home.show');

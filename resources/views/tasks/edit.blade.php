@@ -64,19 +64,21 @@
                             value="0"
                             selected="{{$task->status == 0 && 'selected'}}">Not done</option>
                         </select>
-                        <!-- @error('status')
-                            <span class="invalid-feedback" role="alert">
-                                <strong>{{ $message }}</strong>
-                            </span>
-                        @enderror -->
     </div>
-    <div class="form-group row mb-0">
-                            <div class="col-md-6 offset-md-6">
+        <div class="form-group row justify-content-center">
+                            <div class="col-2 offset-md-4">
                                 <button type="submit" class="btn btn-primary">
                                     Update Task
                                 </button>
                             </div>
-                        </div>
+                            <div class="col-6">
+                                <form action="/p/{{$task->id}}" enctype="multipart/form-data" method="post">
+                                    @csrf
+                                    @method('delete')
+                                    <button type="submit" class="btn btn-danger">Delete Task</button>
+                                </form>
+                            </div>
+        </div>
     </form>
 </div>
 @endsection

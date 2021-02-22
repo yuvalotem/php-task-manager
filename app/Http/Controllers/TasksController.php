@@ -35,6 +35,16 @@ class TasksController extends Controller
     {
         return view('tasks.edit', compact('task'));
     }
+
+    public function check($id)
+    {
+        $data =[ "status" => true ];
+
+        auth()->user()->tasks()->where('id', $id)->update($data);
+
+        return redirect('/home/'. auth()->user()->id);
+    }
+
     public function update($id)
     {
         $data = request()->validate([
@@ -45,6 +55,13 @@ class TasksController extends Controller
         $data['status'] = $data['status'] == "1";
 
         auth()->user()->tasks()->where('id', $id)->update($data);
+
+        return redirect('/home/'. auth()->user()->id);
+    }
+
+    public function delete($id)
+    {
+        auth()->user()->tasks()->where('id', $id)->delete();
 
         return redirect('/home/'. auth()->user()->id);
     }

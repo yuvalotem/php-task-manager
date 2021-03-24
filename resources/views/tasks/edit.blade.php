@@ -59,10 +59,16 @@
                         name="status">
                             <option
                             value="1"
-                            selected="{{$task->status == 1 && 'selected'}}">Done</option>
+                            @if ($task->status == 1)
+                            selected
+                            @endif
+                            >Done</option>
                             <option
                             value="0"
-                            selected="{{$task->status == 0 && 'selected'}}">Not done</option>
+                            @if ($task->status == 0)
+                            selected
+                            @endif
+                            >Not done</option>
                         </select>
     </div>
         <div class="form-group row justify-content-center">
@@ -71,14 +77,17 @@
                                     Update Task
                                 </button>
                             </div>
+                            </form>
                             <div class="col-6">
                                 <form action="/p/{{$task->id}}" enctype="multipart/form-data" method="post">
                                     @csrf
                                     @method('delete')
                                     <button type="submit" class="btn btn-danger">Delete Task</button>
                                 </form>
+                                <!-- <a href="{{ route('task.delete', [$task->id]) }}"
+                                class="btn btn-xs btn-danger"
+                                onclick="return confirm('Are you sure?')">Delete</a> -->
                             </div>
         </div>
-    </form>
 </div>
 @endsection

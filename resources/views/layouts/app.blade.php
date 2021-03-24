@@ -23,7 +23,13 @@
     <div id="app">
         <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
             <div class="container">
-                <a class="navbar-brand" href="{{ url('/') }}">
+                @guest
+                        @if (Route::has('register'))
+                            <a class="navbar-brand" href="/">
+                        @endif
+                        @else
+                    <a class="navbar-brand" href="{{ route('home.show', Auth::user()) }}">
+                @endguest
                    <div> <img src="/assets/task-manager.png" style="width: 120px; height:40px"/> </div>
                    <div> Task Manager </div>
                 </a>

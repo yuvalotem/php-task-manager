@@ -84,9 +84,6 @@
                                     @method('delete')
                                     <button type="submit" class="btn btn-danger">Delete Task</button>
                                 </form>
-                                <!-- <a href="{{ route('task.delete', [$task->id]) }}"
-                                class="btn btn-xs btn-danger"
-                                onclick="return confirm('Are you sure?')">Delete</a> -->
                             </div>
         </div>
 </div>

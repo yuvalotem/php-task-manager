@@ -33,25 +33,34 @@
 
                     @foreach($user->tasks as $task)
                     <div class='d-flex'>
-                        @if (!$task->status)
-                            <input id="{{$task->id}}" type="checkbox" />
-                        @endif
                         <div class='col-4 pb-3' onclick="window.location='{{ route('task.edit', $task->id)}}'">
                             {{$task->task}}
                         </div>
                         <div class='col-4'>
                             {{$task->deadline}}
                         </div>
-                        <div class='col-4'>
+                        <div class='col-2'>
                             @if ($task->status)
                                 <i class="bi bi-x" style="color:green;">v</i>
                             @else
                                 <i class="bi bi-x" style="color:red;">x</i>
                             @endif
                         </div>
+                        <div class='col-2'>
+                            <form action="/p/{{$task->id}}/{{$task->status}}" enctype="multipart/form-data" method="post">
+                                @csrf
+                                @method('put')
+                                <button type="submit" class="btn btn-primary">
+                                    @if ($task->status)
+                                        uncheck
+                                    @else
+                                        check
+                                    @endif
+                                </button>
+                            </form>
+                        </div>
                     </div>
                     @endforeach
-                    <a href="/p/create">Mark as done</a>
                 </div>
             </div>
         </div>

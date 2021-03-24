@@ -24,7 +24,7 @@ Route::get('/p/create', [App\Http\Controllers\TasksController::class, 'create'])
 Route::post('/p', [App\Http\Controllers\TasksController::class, 'store'])->name('task.store');
 
 Route::put('/p/{task}', [App\Http\Controllers\TasksController::class, 'update'])->name('task.update');
-Route::put('/p/{id}', [App\Http\Controllers\TasksController::class, 'check'])->name('task.check');
+Route::put('/p/{id}/{status}', [App\Http\Controllers\TasksController::class, 'check'])->name('task.check');
 
 Route::delete('/p/{task}', [App\Http\Controllers\TasksController::class, 'delete'])->name('task.delete');
 

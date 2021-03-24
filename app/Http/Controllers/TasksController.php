@@ -36,9 +36,9 @@ class TasksController extends Controller
         return view('tasks.edit', compact('task'));
     }
 
-    public function check($id)
+    public function check($id, $status)
     {
-        $data =[ "status" => true ];
+        $data =[ "status" => !$status ];
 
         auth()->user()->tasks()->where('id', $id)->update($data);
 

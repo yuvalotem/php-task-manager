@@ -20,14 +20,20 @@ class LoginController extends Controller
     */
 
     use AuthenticatesUsers;
-
+    // public const HOME = '/home/{auth()->user()->id}';
     /**
      * Where to redirect users after login.
      *
      * @var string
      */
-    protected $redirectTo = RouteServiceProvider::HOME;
-
+    protected $redirectTo = '/home';
+    protected function redirectTo()
+    {
+        if (auth()->user()->id) {
+            return '/home/' . auth()-> user()->id;
+        }
+        return '/home';
+    }
     /**
      * Create a new controller instance.
      *
@@ -36,5 +42,8 @@ class LoginController extends Controller
     public function __construct()
     {
         $this->middleware('guest')->except('logout');
+        if(auth()-> user()){
+            return redirect('/home/'. auth()-> user()->id);
+        }
     }
 }

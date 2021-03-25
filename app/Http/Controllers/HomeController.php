@@ -24,9 +24,13 @@ class HomeController extends Controller
      */
     public function index($user)
     {
-       $user = User::findOrFail($user);
-        return view('home.index', [
-            'user' => $user
-        ]);
+        if($user == auth()->user()->id){
+            $user = User::findOrFail($user);
+            return view('home.index', [
+                'user' => $user
+            ]);
+        }else{
+            return redirect('/home/'. auth()->user()->id);
+        }
     }
 }

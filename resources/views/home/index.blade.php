@@ -33,7 +33,9 @@
 
                     @foreach($user->tasks as $task)
                     <div class='d-flex'>
-                        <div class='col-4 pb-3' onclick="window.location='{{ route('task.edit', $task->id)}}'">
+                        <div class='col-4 pb-3'
+                        style="cursor: pointer;"
+                        onclick="window.location='{{ route('task.edit', $task->id)}}'">
                             {{$task->task}}
                         </div>
                         <div class='col-4'>

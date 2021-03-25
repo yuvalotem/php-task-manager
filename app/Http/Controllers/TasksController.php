@@ -33,7 +33,18 @@ class TasksController extends Controller
 
     public function edit(Task $task)
     {
-        return view('tasks.edit', compact('task'));
+        if($task->user_id == auth()->user()->id){
+            return view('tasks.edit', compact('task'));
+        }else{
+            return redirect('/home/'. auth()->user()->id);
+        }
+        // dd(auth()->user()->tasks()->where('id', $task->id));
+        // foreach (auth()->user()->tasks() as $t) {
+        //     if($task->id == $t->id){
+        //         return view('tasks.edit', compact('task'));
+        //     }
+        // }
+        // return redirect('/home/'. auth()->user()->id);
     }
 
     public function check($id, $status)
